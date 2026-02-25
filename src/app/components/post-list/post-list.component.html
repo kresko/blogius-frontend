@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Blogius - All Posts</h1>
+
+    <button routerLink="/posts/new" class="btn-primary">
+       Create New Post
+    </button>
+
+    @if (loading()) {
+      <div class="loading">
+        Loading posts...
+      </div>
+    }
+
+    @if (!loading() && posts().length === 0) {
+      <div class="no-posts">
+        <p>No posts yet. Create your first post!</p>
+      </div>
+    }
+
+    <div class="posts-grid">
+      @for (post of posts(); track post.id) {
+        <div class="post-card">
+          <h2>{{ post.title }}</h2>
+          <p class="author">By {{ post.author }}</p>
+          <p class="excerpt">{{ post.content.substring(0, 150) }}...</p>
+          <p class="date">{{ post.createdAt | date:'medium' }}</p>
+
+          <div class="actions">
+            <button [routerLink]="['/posts', post.id]" class="btn-view">
+              View
+            </button>
+            <button [routerLink]="['/posts', post.id, 'edit']" class="btn-edit">
+              Edit
+            </button>
+            <button (click)="deletePost(post.id)" class="btn-delete">
+              Delete
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>

@@ -1,0 +1,41 @@
+<div class="container">
+    @if (loading()) {
+      <div class="loading">
+        Loading post...
+      </div>
+    }
+
+    @if (!loading() && !post()) {
+      <div class="not-found">
+        <h2>Post not found</h2>
+        <button (click)="goBack()" class="btn-back">Back to Posts</button>
+      </div>
+    }
+
+    @if (post(); as post) {
+      <article class="post-detail">
+        <h1>{{ post.title }}</h1>
+
+        <div class="post-meta">
+          <span class="author">By {{ post.author }}</span>
+          <span class="date">{{ post.createdAt | date:'medium' }}</span>
+        </div>
+
+        <div class="post-content">
+          {{ post.content }}
+        </div>
+
+        <div class="post-actions">
+          <button (click)="goBack()" class="btn-back">
+            ← Back to Posts
+          </button>
+          <button [routerLink]="['/posts', post.id, 'edit']" class="btn-edit">
+            Edit Post
+          </button>
+          <button (click)="deletePost()" class="btn-delete">
+            Delete Post
+          </button>
+        </div>
+      </article>
+    }
+  </div>

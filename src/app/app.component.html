@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="nav-container">
+      <h1 routerLink="/" class="logo">📝 Blogius</h1>
+      <div class="nav-links">
+        <a routerLink="/posts" routerLinkActive="active">All Posts</a>
+        <a routerLink="/posts/new" routerLinkActive="active">New Post</a>
+      </div>
+    </div>
+  </nav>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer>
+    <p>&copy; 2026 Blogius - Simple Blog Application</p>
+  </footer>
